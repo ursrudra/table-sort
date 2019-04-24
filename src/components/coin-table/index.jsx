@@ -5,10 +5,10 @@ export default function CoinTable(props) {
     <table id="customers">
       <thead>
          <tr>
-             <th onClick={()=>props.sortBy('rank')}>#</th>
-             <th onClick={()=>props.sortBy('name')}>Name</th>
+             <th onClick={()=>props.sortBy('rank','number')}>#</th>
+             <th onClick={()=>props.sortBy('name','name')}>Name</th>
              <th>Symbol</th>
-             <th onClick={()=>props.sortBy('price_usd')}>Price</th>
+             <th onClick={()=>props.sortBy('price_usd','number')}>Price</th>
              <th>%hour</th>
              <th>%day</th>
              <th>%week</th>
