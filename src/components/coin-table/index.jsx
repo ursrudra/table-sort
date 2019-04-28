@@ -1,47 +1,42 @@
 import React from 'react'
 
 export default function CoinTable(props) {
+  const {renderSelectView} = props;
+  const sdata = [{value:'asc'},{value:'desc'}];
   return (
-    <table id="customers">
+    <table id="dashboard">
       <thead>
          <tr>
-             <th onClick={()=>props.sortBy('rank','number')}>#</th>
-             <th onClick={()=>props.sortBy('name','name')}>Name</th>
-             <th>Symbol</th>
-             <th onClick={()=>props.sortBy('price_usd','number')}>Price</th>
-             <th>%hour</th>
-             <th>%day</th>
-             <th>%week</th>
+             <th>#
+              {renderSelectView('rank','number',sdata)}
+             </th>
+             <th>Name
+             {renderSelectView('name','name',sdata)}
+             </th>
+             <th>Symbol
+             {renderSelectView('symbol','name',sdata)}
+             </th>
+             <th>Price
+             {renderSelectView('price_usd','number',sdata)}
+             </th>
+             <th className="mobile">%hour
+             {renderSelectView('hour','number',sdata)}
+             </th>
+             <th className="mobile">%day
+             {renderSelectView('day','number',sdata)}
+             </th>
+             <th className="mobile">%week
+             {renderSelectView('week','number',sdata)}
+             </th>
          </tr>
       </thead>
       <tbody>
       {
            props.data.map(row => (
-        <div>       
-        <tr>
-              <td>{row.rank}</td>
-              <td>{row.name}</td>
-              <td>{row.symbol}</td>
-              <td>{row.price_usd}</td>
-              <td>{row.percent_change_1h}</td>
-              <td>{row.percent_change_24h}</td>
-              <td>{row.percent_change_7d}</td>
-
-
-          </tr>
-          
-          <tr>
-          <td><input type='text' defaultValue ={row.rank}/></td>
-          <td><input type='text' defaultValue ={row.name}/></td>
-          <td><input type='text' defaultValue ={row.symbol}/></td>
-          <td><input type='text' defaultValue ={row.price_usd}/></td>
-          <td><input type='text' defaultValue ={row.percent_change_1h}/></td>
-          <td><input type='text' defaultValue ={row.percent_change_24h}/></td>
-          <td><input type='text' defaultValue ={row.percent_change_7d}/></td>
-
-
-      </tr>
-      </div>
+         props.editIndex === row.rank && props.isInEditMode ? props.renderEditView():    
+        
+         props.renderDefaultView(row.rank)  
+         
            ))
       }
 
